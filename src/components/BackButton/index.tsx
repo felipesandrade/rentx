@@ -19,7 +19,7 @@ export function BackButton({ color, ...rest }: Props) {
     const theme = useTheme();
 
     return(
-        <Container>
+        <Container {...rest}>
             <MaterialIcons 
                 name="chevron-left"
                 size={24}
