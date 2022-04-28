@@ -1,7 +1,6 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
 
-import { useWindowDimensions } from 'react-native';
+import { useWindowDimensions, StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 
 import { ConfirmButton } from '../../components/ConfirmButton';
