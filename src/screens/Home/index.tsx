@@ -33,8 +33,8 @@ export function Home(){
   //   thumbnail: 'https://www.downloadclipart.net/large/audi-rs5-red-png.png',
   // }
 
-  function handleCarDetails(){
-    navigation.navigate('CarDetails');
+  function handleCarDetails(car: CarDTO){
+    navigation.navigate('CarDetails', { car });
   }
 
   // Listando os carros a partir da API.
@@ -75,9 +75,9 @@ export function Home(){
         { loading ? <Load /> : 
           <CarList
             data={cars}
-            keyExtractor={item => item.id}
+            keyExtractor={ item => item.id }
             renderItem={({ item }) =>  
-              <Car data={item} onPress={() => handleCarDetails()} />
+              <Car data={ item } onPress={ () => handleCarDetails(item) } />
             }
           />
         }
