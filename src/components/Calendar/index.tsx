@@ -14,13 +14,8 @@ import {
 
 LocaleConfig.locales['pt-br'] = ptBR;
 LocaleConfig.defaultLocale = 'pt-br';
-interface DayProps {
-    dateString: string;
-    day: number;
-    month: number;
-    year: number;
-    timestamp: number;
-}
+
+//Interface para o período selecionado
 interface MarkedDateProps {
     [date: string]: {
         color: string;
@@ -28,6 +23,14 @@ interface MarkedDateProps {
         disabled?: boolean;
         disableTouchEvent?: boolean;
     },
+}
+//Interface para o dia selecionado
+interface DayProps {
+    dateString: string;
+    day: number;
+    month: number;
+    year: number;
+    timestamp: number;
 }
 
 function Calendar({ markedDates, onDayPress }: CalendarProps){
@@ -64,8 +67,11 @@ function Calendar({ markedDates, onDayPress }: CalendarProps){
 
             firstDay={1}
             minDate={String(new Date())}
+            //Setando a forma de trabalho do nosso calendário
             markingType="period"
+            //As datas selecionadas para o período
             markedDates={markedDates}
+            //Pega a data clicada pelo usuário
             onDayPress={onDayPress}
         />
     );
