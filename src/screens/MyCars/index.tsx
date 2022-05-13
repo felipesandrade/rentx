@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
+import { AntDesign } from '@expo/vector-icons';
 
 import { BackButton } from '../../components/BackButton';
+import { Car } from '../../components/Car';
 
 import { CarDTO } from '../../dtos/CarDTO';
 
@@ -12,11 +15,30 @@ import {
     Container,
     Header,
     Title,
-    Msg
+    SubTitle,
+    Content,
+    Appointments,
+    AppointmentsTitle,
+    AppointmentsQuantity,
+    CarList,
+    CarWrapper,
+    CarFooter,
+    CarFooterTitle,
+    CarFooterPeriod,
+    CarFooterDate,
 } from './styles';
 
+import { Load } from '../../components/Load';
+interface CarProps {
+    id: string;
+    user_id: string;
+    startDate: string;
+    endDate: string;
+    car: CarDTO;
+}
+
 export function MyCars(){
-    const [ cars, setCars ] = useState<CarDTO[]>([]);
+    const [ cars, setCars ] = useState<CarProps[]>([]);
     const [ loading, setLoading ] = useState(true);
 
     const theme = useTheme();
@@ -31,12 +53,12 @@ export function MyCars(){
         async function fetchCars(){
             try {
                 const response = await api.get('/schedules_byuser?user_id=1'); 
-                console.log(response);
                 setCars(response.data);
             } catch (error) {
                 console.log(error);
             } finally {
-                setLoading(false);            }
+                setLoading(false);            
+            }
         }
         fetchCars();
     }, []);
@@ -44,6 +66,11 @@ export function MyCars(){
     return(
         <Container>
             <Header>
+                <StatusBar
+                    barStyle="light-content"
+                    translucent
+                    backgroundColor="transparent"
+                />
                 <BackButton 
                     onPress={handleBack}
                     color={theme.colors.shape}
@@ -52,10 +79,44 @@ export function MyCars(){
                     Seus agendamentos,
                     estão aqui.
                 </Title>
-                <Msg>
+                <SubTitle>
                     Conforto, segurança e praticidade.
-                </Msg>
+                </SubTitle>
             </Header>
+
+            <Content>
+                <Appointments>
+                    <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>
+                    <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
+                </Appointments>
+
+                { loading ? <Load /> :
+            
+                    <CarList 
+                        data={cars}
+                        keyExtractor={item => item.id}
+                        renderItem={({ item }) =>
+                            <CarWrapper>
+                                <Car data={ item.car } onPress={() => {}} />
+                                <CarFooter>
+                                    <CarFooterTitle>Período</CarFooterTitle>
+                                    <CarFooterPeriod>
+                                        <CarFooterDate>{item.startDate}</CarFooterDate>
+                                        <AntDesign
+                                            name="arrowright"
+                                            size={20}
+                                            color={theme.colors.title}
+                                            style={{ marginHorizontal: 10 }}
+                                        />
+                                        <CarFooterDate>{item.endDate}</CarFooterDate>
+                                    </CarFooterPeriod>
+                                </CarFooter>
+                            </CarWrapper>
+                        }
+                    />
+                }
+            </Content>
+            
         </Container>
     );
 }
