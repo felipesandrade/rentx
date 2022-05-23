@@ -1,4 +1,6 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
+
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 
@@ -27,7 +29,6 @@ import {
     Accessories,
     Footer,
 } from './styles';
-
 interface Params {
     car: CarDTO;
 }
@@ -49,6 +50,11 @@ export function CarDetails() {
     return (
         <Container>
             <Header>
+                <StatusBar
+                    barStyle="light-content"
+                    translucent
+                    backgroundColor="black"
+                />
                 <BackButton onPress={handleBack} />
             </Header>
             <CarImages> 

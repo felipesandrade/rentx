@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, StatusBar } from 'react-native';
 import { format } from 'date-fns';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Feather } from '@expo/vector-icons';
@@ -110,6 +110,11 @@ export function SchedulingDetails() {
     return (
         <Container>
             <Header>
+                <StatusBar
+                    barStyle="light-content"
+                    translucent
+                    backgroundColor="black"
+                />
                 <BackButton onPress={handleBack} />
             </Header>
             <CarImages> 
