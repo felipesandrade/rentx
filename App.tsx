@@ -20,6 +20,8 @@ import {
 // import { Scheduling } from './src/screens/Scheduling';
 // import { SchedulingDetails } from './src/screens/SchedulingDetails';
 // import { SchedulingComplete } from './src/screens/SchedulingComplete';
+// import { Splash } from './src/screens/Splash';
+
 import { Routes } from './src/routes';
 
 import theme from './src/styles/theme';
@@ -48,6 +50,7 @@ export default function App() {
       {/* <Scheduling /> */}
       {/* <SchedulingDetails /> */}
       {/* <SchedulingComplete /> */}
+      {/* <Splash /> */}
       <Routes />
     </ThemeProvider>
     
