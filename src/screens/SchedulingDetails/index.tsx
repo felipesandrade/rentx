@@ -111,9 +111,9 @@ export function SchedulingDetails() {
         <Container>
             <Header>
                 <StatusBar
-                    barStyle="light-content"
+                    barStyle="dark-content"
                     translucent
-                    backgroundColor="black"
+                    backgroundColor="transparent"
                 />
                 <BackButton onPress={handleBack} />
             </Header>
