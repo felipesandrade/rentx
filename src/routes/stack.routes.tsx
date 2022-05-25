@@ -25,6 +25,9 @@ export function StackRoutes(){
             <Screen 
                 name="Home"
                 component={Home}
+                options={{
+                    gestureEnabled: false, // evita q o usuário consiga voltar para a tela de splash no IOS
+                }}
             />
             <Screen 
                 name="CarDetails"
