@@ -29,6 +29,7 @@ import {
 } from './styles';
 
 import { Load } from '../../components/Load';
+import { LoadAnimation } from '../../components/LoadAnimation';
 interface CarProps {
     id: string;
     user_id: string;
@@ -90,7 +91,7 @@ export function MyCars(){
                     <AppointmentsQuantity>{cars.length}</AppointmentsQuantity>
                 </Appointments>
 
-                { loading ? <Load /> :
+                { loading ? <LoadAnimation /> :
             
                     <CarList 
                         data={cars}
